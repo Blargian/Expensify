@@ -12,9 +12,14 @@ export const ExpensesSummary = ({expenseCount, expensesTotal}) => {
     )
     };
 
-const mapStateToProps = (state) => ({
-    expenseCount: state.expenses.length,
-    expensesTotal: numeral(selectExpensesTotal(state.expenses)/100).format('$0,0.00'),
-});
+const mapStateToProps = (state) => {
+    const visibleExpenses = selectExpenses(state.expenses,state.filters);
+
+    return {    
+        expenseCount: state.expenses.length,
+        expensesTotal: numeral(selectExpensesTotal(visibleExpenses)/100).format('$0,0.00'),
+    }
+   
+};
 
 export default connect(mapStateToProps)(ExpensesSummary);
