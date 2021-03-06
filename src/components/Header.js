@@ -1,14 +1,21 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 export const Header = ({startLogout}) => (
-  <header>
-    <h1>Expensify</h1>
-    <NavLink to="/" activeClassName="is-active" exact={true}>Dashboard</NavLink>
-    <NavLink to="/create" activeClassName="is-active">Create Expense</NavLink>
-    <button onClick={startLogout}>Logout</button>
+  
+  <header className="header">
+  <div className="content-container">
+    <div className="header__content">
+      <Link className="header__title" to="/" exact={true}>
+        <h1>Expense Tracker</h1>
+      </Link>
+      <button className="button-link" onClick={startLogout}>Logout <FontAwesomeIcon  className="signOut" icon={faSignOutAlt} /></button>
+    </div>
+  </div>
   </header>
 );
 
